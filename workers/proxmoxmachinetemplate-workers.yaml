@@ -1,0 +1,25 @@
+apiVersion: infrastructure.cluster.x-k8s.io/v1alpha1
+kind: ProxmoxMachineTemplate
+metadata:
+  name: worker-template
+  namespace: default
+spec:
+  template:
+    spec:
+      disks:
+        bootVolume:
+          disk: scsi0
+          sizeGb: 20
+      format: qcow2
+      full: true
+      memoryMiB: 2048
+      network:
+        default:
+          bridge: vmbr0
+          model: virtio
+      numCores: 2
+      numSockets: 1
+      sourceNode: homelab-proxmox-02
+      templateID: 124
+      checks:
+        skipCloudInitStatus: true

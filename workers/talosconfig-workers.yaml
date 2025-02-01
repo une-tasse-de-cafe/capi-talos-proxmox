@@ -1,0 +1,14 @@
+apiVersion: bootstrap.cluster.x-k8s.io/v1alpha3
+kind: TalosConfigTemplate
+metadata:
+  name: talosconfig-workers
+spec:
+  template:
+    spec:
+      generateType: worker
+      talosVersion: v1.9
+      configPatches:
+          - op: replace
+            path: /machine/install
+            value:
+              disk: /dev/sda
